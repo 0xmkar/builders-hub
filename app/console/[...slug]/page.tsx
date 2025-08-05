@@ -35,7 +35,6 @@ const componentMap = {
   "layer-1/performance-check": () => import("../../../toolbox/src/toolbox/Nodes/PerformanceMonitor"),
   "layer-1/convert-to-l1": () => import("../../../toolbox/src/toolbox/L1/ConvertToL1"),
   "layer-1/explorer-setup": () => import("../../../toolbox/src/toolbox/L1/SelfHostedExplorer"),
-  "layer-1/manage-tx-fees": () => import("../../../toolbox/src/toolbox/Precompiles/FeeManager"),
   
   // L1 Tokenomics
   "l1-tokenomics/fee-manager": () => import("../../../toolbox/src/toolbox/Precompiles/FeeManager"),
