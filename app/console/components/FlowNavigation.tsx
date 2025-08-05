@@ -618,13 +618,6 @@ function FlowNavigationContent({ currentPath }: FlowNavigationProps) {
                                 </p>
                               )}
                             </Button>
-                            {altIndex === 0 && step.alternatives && step.alternatives.length > 1 && (
-                              <div className="flex justify-center py-1">
-                                <div className="flex items-center justify-center p-1">
-                                  <MoveVertical className="h-4 w-4 text-blue-500 dark:text-blue-400" />
-                                </div>
-                              </div>
-                            )}
                           </div>
                         );
                       })}
