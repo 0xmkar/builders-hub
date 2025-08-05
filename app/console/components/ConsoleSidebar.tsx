@@ -7,19 +7,22 @@ import {
   Home, 
   Layers, 
   Users, 
-  MessagesSquare, 
-  ArrowUpDown, 
+  MessagesSquare,
   Settings, 
   Wrench, 
   Droplets, 
   ArrowLeft,
   Shield,
   RefreshCcw,
-
   Network,
-  Building2,
-  Zap,
-  GitMerge
+  GitMerge,
+  Server,
+  Telescope,
+  ArrowLeftRight,
+  Calculator,
+  Coins,
+  Box,
+  Globe
 } from "lucide-react";
 
 import {
@@ -54,7 +57,7 @@ const data = {
         {
           title: "Node Setup",
           url: "/console/primary-network/node-setup?flow=node-setup",
-          icon: Settings,
+          icon: Server,
         },
         {
           title: "Testnet Faucet",
@@ -62,20 +65,20 @@ const data = {
           icon: Droplets,
         },
         {
-          title: "C<->P Chain Bridge",
+          title: "C/P-Chain Bridge",
           url: "/console/primary-network/bridge",
-          icon: ArrowUpDown,
+          icon: ArrowLeftRight,
         },
         {
           title: "AVAX Unit Converter",
           url: "/console/primary-network/unit-converter",
-          icon: RefreshCcw,
+          icon: Calculator,
         },
       ],
     },
     {
       title: "Layer 1",
-      icon: Building2,
+      icon: Box,
       items: [
         {
           title: "Create New L1",
@@ -85,44 +88,39 @@ const data = {
         {
           title: "L1 Node Setup",
           url: "/console/layer-1/node-setup?flow=node-setup",
-          icon: Settings,
+          icon: Server,
         },
         {
           title: "Explorer Setup",
           url: "/console/layer-1/explorer-setup",
-          icon: Building2,
-        },
-        {
-          title: "Manage Transaction Fees",
-          url: "/console/layer-1/manage-tx-fees",
-          icon: Zap,
-        },
+          icon: Telescope,
+        }
       ],
     },
     {
       title: "L1 Tokenomics",
-      icon: Users,
+      icon: Coins,
       items: [
         {
           title: "Transaction Fee Parameters",
           url: "/console/l1-tokenomics/fee-manager",
-          icon: Zap,
+          icon: Coins,
         },
         {
           title: "Fee Distributions",
           url: "/console/l1-tokenomics/reward-manager",
-          icon: Zap,
+          icon: Coins,
         },
         {
           title: "Mint Native Coins",
           url: "/console/l1-tokenomics/native-minter",
-          icon: Zap,
+          icon: Coins,
         },
       ],
     },
     {
       title: "Permissioned L1s",
-      icon: Settings,
+      icon: Shield,
       items: [
         {
           title: "Validator Manager Setup",
@@ -148,7 +146,7 @@ const data = {
     },
     {
       title: "Permissionless L1s",
-      icon: Zap,
+      icon: Globe,
       items: [
         {
           title: "Migrate from Permissioned L1",
@@ -181,17 +179,17 @@ const data = {
     },
     {
       title: "Interchain Token Transfer",
-      icon: ArrowUpDown,
+      icon: ArrowLeftRight,
       items: [
         {
           title: "Bridge Setup",
           url: "/console/ictt/deploy-native-home",
-          icon: ArrowUpDown,
+          icon: ArrowLeftRight,
         },
         {
           title: "Token Transfer",
           url: "/console/ictt/token-transfer",
-          icon: ArrowUpDown,
+          icon: ArrowLeftRight,
         },
       ],
     },
@@ -286,7 +284,7 @@ export function ConsoleSidebar({
                       <SidebarMenuButton 
                         asChild={!item.comingSoon}
                         isActive={isActive}
-                        className={`pl-6 ${item.comingSoon ? 'opacity-50 cursor-not-allowed' : ''} ${
+                        className={`${item.comingSoon ? 'opacity-50 cursor-not-allowed' : ''} ${
                           isActive 
                             ? 'bg-sky-100 dark:bg-sky-900/20 text-sky-900 dark:text-sky-100 border-r-2 border-sky-500 hover:bg-sky-150 dark:hover:bg-sky-900/30' 
                             : 'hover:bg-gray-100 dark:hover:bg-gray-800'
@@ -295,15 +293,10 @@ export function ConsoleSidebar({
                       >
                         {item.comingSoon ? (
                           <div className="flex items-center gap-2">
-                            <item.icon />
-                            <span>{item.title}</span>
-                            <span className="text-xs bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full ml-auto">
-                              Coming Soon
-                            </span>
+                            <span>{item.title} (soon)</span>
                           </div>
                         ) : (
                           <Link href={item.url}>
-                            <item.icon className={isActive ? 'text-sky-600 dark:text-sky-400' : ''} />
                             <span>{item.title}</span>
                           </Link>
                         )}
