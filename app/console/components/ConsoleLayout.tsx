@@ -16,6 +16,13 @@ const HeaderWalletConnection = lazy(() =>
   }))
 );
 
+// Dynamically import HeaderWalletConnection from toolbox
+const TestnetMainnetSwitch = lazy(() => 
+  import("../../../toolbox/src/components/ConnectWallet/TestnetMainnetSwitch").then(module => ({
+    default: module.TestnetMainnetSwitch
+  }))
+);
+
 // Premium background styles
 const backgroundStyles = `
   @keyframes constellation-twinkle {
@@ -219,6 +226,7 @@ export function ConsoleLayout({ children }: ConsoleLayoutProps) {
                 </Button>
               }>
                 <HeaderWalletConnection />
+                <TestnetMainnetSwitch />
               </Suspense>
               
               {/* Theme Toggle */}
