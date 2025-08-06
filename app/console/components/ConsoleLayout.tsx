@@ -4,11 +4,13 @@ import { useState, useEffect, Suspense, lazy } from "react";
 import { ConsoleSidebar } from "./ConsoleSidebar";
 import { UserButton } from "./UserButton";
 import { FlowNavigation } from "./FlowNavigation";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { Sun, Moon, ChevronRight } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
+import { Separator } from "@/components/ui/separator";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 // Dynamically import HeaderWalletConnection from toolbox
 const HeaderWalletConnection = lazy(() => 
   import("../../../toolbox/src/components/HeaderWalletConnection").then(module => ({
@@ -191,6 +193,28 @@ export function ConsoleLayout({ children }: ConsoleLayoutProps) {
         </div>
 
         <ConsoleSidebar />
+
+        <SidebarInset>
+        <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
+          <SidebarTrigger className="-ml-1" />
+          <Separator
+            orientation="vertical"
+            className="mr-2 data-[orientation=vertical]:h-4"
+          />
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem className="hidden md:block">
+                <BreadcrumbLink href="#">
+                  Building Your Application
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator className="hidden md:block" />
+              <BreadcrumbItem>
+                <BreadcrumbPage>Data Fetching</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </header>
         
         <main className="flex-1 flex flex-col min-w-0">
           <header className="sticky top-0 z-50 flex items-center justify-between gap-4 px-6 py-4 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 min-h-[72px]">
@@ -253,7 +277,7 @@ export function ConsoleLayout({ children }: ConsoleLayoutProps) {
           <FlowNavigation currentPath={pathname} />
           
           <div className="flex-1 flex flex-col gap-4 p-4 pt-0">
-            <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min p-6">
+            <div className="min-h-[100vh] flex-1 p-6">
               {children}
             </div>
           </div>
